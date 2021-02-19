@@ -1,5 +1,6 @@
 import { useDraggable } from '@dnd-kit/core';
 import React from 'react';
+import {CSS} from "@dnd-kit/utilities";
 
 const Todo = () => {
 
@@ -8,12 +9,12 @@ const Todo = () => {
     });
 
     const style = transform ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        transform: CSS.Translate.toString(transform),
     } : undefined;
 
     return (
         <div className="todo" ref={setNodeRef} style={style} {...listeners} {...attributes}>
-            <h1>Todo</h1>
+            <h1>Todo sds</h1>
         </div>
     )
 }
