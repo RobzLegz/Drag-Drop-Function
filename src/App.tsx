@@ -9,29 +9,46 @@ function App() {
   const [parent, setParent] = useState(null);
   const containers = ["React","Redux","Typescript"];
   const logoMap: any = {
-    "React": "https://miro.medium.com/max/500/1*cPh7ujRIfcHAy4kW2ADGOw.png",
-    "Redux": "https://seeklogo.com/images/R/redux-logo-9CA6836C12-seeklogo.com.png",
-    "Typescript": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
-  }
+    "React": {
+      image: "https://miro.medium.com/max/500/1*cPh7ujRIfcHAy4kW2ADGOw.png",
+      text: "React is cool",
+    },
+    "Redux": {
+      image: "https://seeklogo.com/images/R/redux-logo-9CA6836C12-seeklogo.com.png",
+      text: "Redux is a state management tool",
+    },
+    "Typescript": {
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      text: "Typescript makes javascript strongly typed",
+    },
+  };
 
   const hendleDragEnd = (event: any) => {
     const {over, active} = event; 
     setParent(over ? active.id : null);
   }
 
-  const draggableMarkup = (id: string) => <Draggable id={id}><img className="skill-logo" src={logoMap[id!]} alt=""/></Draggable>;
+  const draggableMarkup = (id: string) => <Draggable id={id}><img className="skill-logo" src={logoMap[id!].image} alt=""/></Draggable>;
 
   return (
     <div className="app">
       <DndContext onDragEnd={hendleDragEnd}>
-        {draggableMarkup}   
-        {containers.map((id) => draggableMarkup(id))}
+        
         <Droppable key={"parent"} id={"parent"}>
-          <div className="app-selected">
-            <img className="skill-logo" src={logoMap[parent!]} alt=""/>
-            <h2>You selected {parent}</h2>              
-          </div> 
+          {parent === null ? (
+            <div className="info-box">
+              <h2>Drop here to display more info</h2>
+            </div>
+          ) : (
+            <div className="info-box">
+              <img className="skill-logo" src={logoMap[parent!].image} alt=""/>
+              <h1>{logoMap[parent!].text}</h1>              
+            </div> 
+          )}
         </Droppable>
+        <div className="drag-image-container">
+          {containers.map((id) => id !== parent ? draggableMarkup(id) : null)}
+        </div>
       </DndContext>      
     </div>
   );
