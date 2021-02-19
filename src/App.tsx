@@ -1,10 +1,14 @@
+import { DndContext } from '@dnd-kit/core';
 import React from 'react';
 import './App.css';
+import Todo from './Todo';
 
 function App() {
   return (
     <div className="app">
-      <h1>BUB</h1>
+      <DndContext>
+        <Todo />
+      </DndContext>      
     </div>
   );
 }
