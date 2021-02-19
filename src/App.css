@@ -5,3 +5,7 @@
 .app-selected {
   padding: 20px;
 }
+.skill-logo {
+  height: 50px;
+  object-fit: contain;
+}

@@ -7,7 +7,7 @@ const Draggable = (props: any) => {
     const [isDropped, setIsDropped] = useState(false);
 
     const{attributes, listeners, setNodeRef, transform} = useDraggable({
-        id: "draggable",
+        id: props.id,
     });
 
     const style = transform ? {
