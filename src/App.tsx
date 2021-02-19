@@ -15,8 +15,8 @@ function App() {
   }
 
   const hendleDragEnd = (event: any) => {
-    const {over} = event;
-    setParent(over ? over.id : null);
+    const {over, active} = event; 
+    setParent(over ? active.id : null);
   }
 
   const draggableMarkup = (id: string) => <Draggable id={id}><img className="skill-logo" src={logoMap[id!]} alt=""/></Draggable>;
@@ -25,16 +25,13 @@ function App() {
     <div className="app">
       <DndContext onDragEnd={hendleDragEnd}>
         {draggableMarkup}   
-        {containers.map((id) => (draggableMarkup(id)))}
-        {containers.map((id) => (
-          <Droppable key={id} id={id}>
-            {parent === id ? 
-              <div className="app-selected">
-                <img className="skill-logo" src={logoMap[parent!]} alt=""/>
-                <h2>You selected {parent}</h2>              
-              </div> : <h1>{id}</h1>}
-          </Droppable>
-        ))}
+        {containers.map((id) => draggableMarkup(id))}
+        <Droppable key={"parent"} id={"parent"}>
+          <div className="app-selected">
+            <img className="skill-logo" src={logoMap[parent!]} alt=""/>
+            <h2>You selected {parent}</h2>              
+          </div> 
+        </Droppable>
       </DndContext>      
     </div>
   );
