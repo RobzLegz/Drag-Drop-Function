@@ -6,12 +6,12 @@ import Droppable from './Droppable';
 
 function App() {
 
-  const [isDropped, setIsDropped] = useState(false);
+  const [parent, setParent] = useState(null);
+  const containers = ["A","B","C"];
 
   const hendleDragEnd = (event: any) => {
-    if(event.over && event.over.id === "droppable"){
-      setIsDropped(true);
-    }
+    const {over} = event;
+    setParent(over ? over.id : null);
   }
 
   const draggableMarkup = <Draggable><h1>Todo</h1></Draggable>;
@@ -19,10 +19,12 @@ function App() {
   return (
     <div className="app">
       <DndContext onDragEnd={hendleDragEnd}>
-        {!isDropped ? draggableMarkup : null}
-        <Droppable>
-          {isDropped ? draggableMarkup : "Drop here"}
-        </Droppable>
+        {parent === null ? draggableMarkup : null}
+        {containers.map((id) => (
+          <Droppable key={id} id={id}>
+            {parent === id ? draggableMarkup : <h1>Drop Here</h1>}
+          </Droppable>
+        ))}
       </DndContext>      
     </div>
   );

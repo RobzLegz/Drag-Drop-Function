@@ -4,7 +4,7 @@ import React from 'react';
 const Droppable = (props: any) => {
     
     const {isOver, setNodeRef} = useDroppable({
-        id: "droppable",
+        id: props.id,
     });
 
     const style = {
