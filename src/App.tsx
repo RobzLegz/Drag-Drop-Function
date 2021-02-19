@@ -5,7 +5,7 @@ import Draggable from './Draggable';
 import Droppable from './Droppable';
 
 function App() {
-  
+
   const [isDropped, setIsDropped] = useState(false);
 
   const hendleDragEnd = (event: any) => {
