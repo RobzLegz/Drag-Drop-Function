@@ -1,7 +1,7 @@
 import { useDroppable } from '@dnd-kit/core';
 import React from 'react';
 
-const TodoList = () => {
+const Droppable = (props: any) => {
     
     const {isOver, setNodeRef} = useDroppable({
         id: "droppable",
@@ -13,9 +13,9 @@ const TodoList = () => {
 
     return (
         <div className="todo-list" ref={setNodeRef} style={style}>
-            <h2>List</h2>
+            {props.children}
         </div>
     )
 }
 
-export default TodoList
+export default Droppable

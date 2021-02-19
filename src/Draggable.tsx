@@ -1,8 +1,10 @@
 import { useDraggable } from '@dnd-kit/core';
-import React from 'react';
+import React, { useState } from 'react';
 import {CSS} from "@dnd-kit/utilities";
 
-const Todo = () => {
+const Draggable = (props: any) => {
+
+    const [isDropped, setIsDropped] = useState(false);
 
     const{attributes, listeners, setNodeRef, transform} = useDraggable({
         id: "draggable",
@@ -14,9 +16,9 @@ const Todo = () => {
 
     return (
         <div className="todo" ref={setNodeRef} style={style} {...listeners} {...attributes}>
-            <h1>Todo sds</h1>
+            {props.children}
         </div>
     )
 }
 
-export default Todo
+export default Draggable
