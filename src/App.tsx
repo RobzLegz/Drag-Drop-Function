@@ -11,7 +11,7 @@ function App() {
   const logoMap: any = {
     "React": {
       image: "https://miro.medium.com/max/500/1*cPh7ujRIfcHAy4kW2ADGOw.png",
-      text: "React is cool",
+      text: "React is a cool front end tool",
     },
     "Redux": {
       image: "https://seeklogo.com/images/R/redux-logo-9CA6836C12-seeklogo.com.png",
@@ -37,7 +37,7 @@ function App() {
         <Droppable key={"parent"} id={"parent"}>
           {parent === null ? (
             <div className="info-box">
-              <h2>Drop here to display more info</h2>
+              <h2 style={{color: "#666"}}>Drop here to display more info</h2>
             </div>
           ) : (
             <div className="info-box">
